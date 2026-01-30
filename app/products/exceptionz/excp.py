@@ -23,3 +23,5 @@ class ProductActive(ExceptionStructure):
     pass
 class PriceNotValue(ExceptionStructure):
     pass
+class ProductUnknowm(ExceptionStructure):
+    pass

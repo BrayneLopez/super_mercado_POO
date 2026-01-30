@@ -1,5 +1,6 @@
-from app.products.exceptionz.excp import (IncompleteLenght, InvoiceCodes, LimitedDateExpired, ProductActive, PriceNotValue)
-from app.products.repository.data_base import ProductDateBase
+from app.products.exceptionz.excp import (
+    IncompleteLenght, InvoiceCodes, LimitedDateExpired, 
+    ProductActive, PriceNotValue, ProductUnknowm)
 
 
 class ValidationProductRegistration:
@@ -36,6 +37,7 @@ class ValidationProductRegistration:
             self.date_in_range()
             self.cost_zero()
             self.db.factured_code(self.code)
+            self.db.code_unknowm(self.code)
             
             
         except IncompleteLenght as e:
@@ -48,4 +50,11 @@ class ValidationProductRegistration:
             return e.args[0]
         except InvoiceCodes as e:
             return e.args[0]
+        except ProductUnknowm as e:
+            return e.args[0]
+        
+        return {'nombre':self.product,
+            'precio':self.cost, 
+            'fecha de vencimiento':self.datelimited, 
+            'categoria':self.category}
         

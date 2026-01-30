@@ -1,8 +1,10 @@
-from app.products.exceptionz.excp import (ProductActive, InvoiceCodes)
+from app.products.exceptionz.excp import (ProductActive, InvoiceCodes, ProductUnknowm)
+from datetime import datetime
+time = datetime.now().strftime("%d/%m/%Y %I:%M %p")
 
 class ProductDateBase:
     def __init__(self):
-        self.codes_eliminated = {12345678, 87654321}
+        self.codes_eliminated = {87654321}
         self.active_codes = {
     10203040,  50607080,  90102030,  14314502,  82773581,  
     33445566,  77889900,  12123434,  44556677,  
@@ -73,11 +75,35 @@ class ProductDateBase:
      
     def product_active(self, code):
         if code in self.active_codes:
-            raise ProductActive('INACTIVE_CODE','El codigo se euencntra en la Base Datos.')
+            raise ProductActive('INACTIVE_CODE','El codigo se encuentra en la Base Datos.')
         return True
         
     def factured_code(self, code): 
         if code in self.codes_eliminated:
             raise InvoiceCodes('PRODUCT_FACTURED','Producto facturado.')
         return True
+    
+    def product_implementatio(self, code, new_product):
+        self.stock.setdefault(code, new_product)
+        
+    
+    
+    #// metodo de caja 
+    
+    def code_unknowm(self, code):
+        if not all([self.product_active(code), self.factured_code(code)]):
+            raise ProductUnknowm('PRODUCT_UNKNOWM', 'Producto Inexistente.')
+        
+    
+    
+
+        
+        
+        
+        
+    
+        
+        
+    
+        
     
