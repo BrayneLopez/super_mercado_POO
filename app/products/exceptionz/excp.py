@@ -1,6 +1,7 @@
 from datetime import datetime
-
 time = datetime.now().strftime("%d/%m/%Y %I:%M %p")
+
+
 
 class ExceptionStructure(Exception):
     def __init__(self, message_error, message):
@@ -10,8 +11,8 @@ class ExceptionStructure(Exception):
             'RUNTIME_AND_DATE':time
         }
         super().__init__(self.types_data_log)
-        
-        
+    
+    
         
 class IncompleteLenght(ExceptionStructure):
     pass

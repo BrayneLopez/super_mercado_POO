@@ -16,7 +16,6 @@ def run():
     vn.log_insert_validation(register.code, new_product_implemented)
     
     print(register.orquest())
-    print(db.stock)
     print(log.registration_successful)
     print(log.register_process_error)
     
