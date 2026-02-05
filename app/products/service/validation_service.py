@@ -11,6 +11,8 @@ def orquest(self):
             self.date_in_range()
             self.cost_zero()
             self.db.factured_code(self.code)
+            
+            #AGREGAR EN VALIDACION DE CAJA
             self.db.code_unknowm(self.code)
             
             

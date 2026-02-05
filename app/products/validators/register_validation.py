@@ -25,7 +25,7 @@ class ValidationProductRegistration:
         return True
         
     def cost_zero(self):
-        if self.cost == 0:
+        if self.cost <= 0:
             raise PriceNotValue('PRICE_NOT_VALUE', 'Precio con valor 0')
         return True
     
