@@ -1,7 +1,7 @@
 from datetime import datetime
 time = datetime.now().strftime("%d/%m/%Y %I:%M %p")
 
-from app.products.repository.log_data import LogDataBase
+from app.logs.process_log_product import LogDataBase
 from app.products.repository.data_base import ProductDateBase
 from app.products.validators.register_validation import ValidationProductRegistration
 from app.products.service.insert_history import ValidationProductsState
