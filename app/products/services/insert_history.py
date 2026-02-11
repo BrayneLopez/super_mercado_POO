@@ -1,5 +1,5 @@
-from app.products.repository.log_data import LogDataBase
-from app.products.repository.data_base import ProductDateBase
+from app.products.repository.logdata import LogDataBase
+from app.products.repository.database import ProductDateBase
 from app.products.validators.register_validation import ValidationProductRegistration
 
 
@@ -13,7 +13,7 @@ class ValidationProductsState:
     def log_insert_validation(self, code, dicio):
         if self.NAME_IN_KEY.lower() in dicio:
             self.db.product_implementatio(code, dicio)
-            self.log.process_ok(dicio)
+            self.log.process_ok(code, dicio)
             
         if self.NAME_ON_KEY_ERROR in dicio:
-            self.log.procees_not_ok(dicio)
+            self.log.procees_not_ok(code, dicio)

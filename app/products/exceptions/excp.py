@@ -13,7 +13,8 @@ class ExceptionStructure(Exception):
         super().__init__(self.types_data_log)
     
     
-        
+class FortmatCodeNuemeric(ExceptionStructure):
+    pass
 class IncompleteLenght(ExceptionStructure):
     pass
 class InvoiceCodes(ExceptionStructure):

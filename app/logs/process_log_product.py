@@ -6,9 +6,9 @@ class LogDataBase:
         self.registration_successful = {}
         self.register_process_error = {}
     
-    def process_ok(self, data): #    AGREGA LOG SI EL DICC ES DEL PRODUCTO
-        self.registration_successful.setdefault(time, data)
+    def process_ok(self, code, data): #    AGREGA LOG SI EL DICC ES DEL PRODUCTO
+        self.registration_successful.setdefault(time, {code:data})
     
-    def procees_not_ok(self, data):#     AGREGA LOG SI SALE UN ERROR
-        self.register_process_error.setdefault(time, data)
+    def procees_not_ok(self, code, data):#    AGREGA LOG SI SALE UN ERROR
+        self.register_process_error.setdefault(time, {code:data})
         

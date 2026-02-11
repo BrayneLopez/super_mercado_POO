@@ -2,20 +2,30 @@ from datetime import datetime
 time = datetime.now().strftime("%d/%m/%Y %I:%M %p")
 
 from app.logs.process_log_product import LogDataBase
-from app.products.repository.data_base import ProductDateBase
+from app.products.repository.database import ProductDateBase
 from app.products.validators.register_validation import ValidationProductRegistration
-from app.products.service.insert_history import ValidationProductsState
+from app.products.services.insert_history import ValidationProductsState
+from app.products.services.validation_service import OrquestValidationRaises, TypesOfErrors, AssigmentValidationCompletion
 from app.products.constants import NAME_IN_KEY, NAME_ON_KEY_ERROR
+
+
 def run():
+    
     log = LogDataBase()
     db = ProductDateBase()
-    vp = ValidationProductsState(log, db, NAME_IN_KEY, NAME_ON_KEY_ERROR)
-    register = ValidationProductRegistration(db, 12753958, 'Gaseosa Manzana 2L', 0, '28/01/2026', 'Bebida')
+    vlt = ValidationProductRegistration(db, 12345678, 'Gaseosa Manzana 2L', 0, '28/01/2026', 'Bebida')
+    vps = ValidationProductsState(log, db, NAME_IN_KEY, NAME_ON_KEY_ERROR)
+    x = OrquestValidationRaises( vlt.numeric_entry, vlt.code_format, vlt.date_in_range, 
+                                vlt.cost_zero, db.product_active, db.factured_code, vlt.code)
+    a = TypesOfErrors(x)
+    v = AssigmentValidationCompletion(a.orchestra_validation(), vlt.category, vlt.product, vlt.cost, vlt.datelimited)
+
+    print(v.validation_completion())
     
-    new_product_implemented = register.orquest()
-    vp.log_insert_validation(register.code, new_product_implemented)
+    kk = v.validation_completion()
+    vps.log_insert_validation(vlt.code, kk)
     
-    print(register.orquest())
+
     print(log.registration_successful)
     print(log.register_process_error)
     
