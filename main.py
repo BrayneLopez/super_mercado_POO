@@ -13,19 +13,17 @@ def run():
     
     log = LogDataBase()
     db = ProductDateBase()
-    vlt = ValidationProductRegistration(db, 12345678, 'Gaseosa Manzana 2L', 0, '28/01/2026', 'Bebida')
+    vlt = ValidationProductRegistration(db, 87654323, 'Gaseosa Manzana 2L', 1, '28/01/2026', 'Bebida')
     vps = ValidationProductsState(log, db, NAME_IN_KEY, NAME_ON_KEY_ERROR)
-    x = OrquestValidationRaises( vlt.numeric_entry, vlt.code_format, vlt.date_in_range, 
+    orquest_exceptions = OrquestValidationRaises( vlt.numeric_entry, vlt.code_format, vlt.date_in_range, 
                                 vlt.cost_zero, db.product_active, db.factured_code, vlt.code)
-    a = TypesOfErrors(x)
-    v = AssigmentValidationCompletion(a.orchestra_validation(), vlt.category, vlt.product, vlt.cost, vlt.datelimited)
-
-    print(v.validation_completion())
+    caputary_errors = TypesOfErrors(orquest_exceptions)
+    validation_ok = AssigmentValidationCompletion(caputary_errors.orchestra_validation(), vlt.category, vlt.product, vlt.cost, vlt.datelimited)
     
-    kk = v.validation_completion()
-    vps.log_insert_validation(vlt.code, kk)
+    data = validation_ok.validation_completion()
+    vps.log_insert_validation(vlt.code, data)
     
-
+    print(db.stock)
     print(log.registration_successful)
     print(log.register_process_error)
     
