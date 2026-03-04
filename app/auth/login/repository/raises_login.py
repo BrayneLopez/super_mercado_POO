@@ -9,7 +9,7 @@ class FormatTypesLogs(Exception):
             "TYPE_ERROR_CODE":CODES,
             'RUNTIME_DATE':time
         }
-        super().__init__()
+        super().__init__(self.log_login_sesion)
         
 
 class FormatTextUsername(FormatTypesLogs):
@@ -21,6 +21,8 @@ class PasswordLength(FormatTypesLogs):
 class PasswordBannedOn(FormatTypesLogs):
     pass
 class SafeFormatHashe(FormatTypesLogs):
+    pass
+class SpaceEmailOn(FormatTypesLogs):
     pass
 class EmailFormatOk(FormatTypesLogs):
     pass
