@@ -12,7 +12,7 @@ class RegisterSesion:
         self.obj = obj              
         self.id_username = str(uuid.uuid4())
         self.process_safe_private = process_safe_private
-        self.unknwom = None
+        self.hashed = None
         
         self.username = username
         self.password = password
@@ -63,10 +63,10 @@ class RegisterSesion:
 }:
             raise PasswordBannedOn('NOT_SAFE_PASSWORD', 'Selecciona una contraseña mas segura.Intenta mezclar letras, numeros y simbolos.', 400)
         else:
-            self.unknwom = self.process_safe_private.hash(self.password)
+            self.hashed = self.process_safe_private.hash(self.password)
     
     def safe_password_format(self):
-        if not isinstance(self.unknwom, str) and self.unknwom.startwith('$argon2'):
+        if not isinstance(self.hashed, str) or not self.hashed.startswith('$argon2'):
            raise SafeFormatHashe('PROCESS_NOT_OK_HARSHER', 'FAILED_HASH', 500) 
     
     
@@ -77,18 +77,18 @@ class RegisterSesion:
     
     
     def email_format_ok(self):
-        if not self.email.count('@') == 1 and self.email.count('.') == 1:
+        if not (self.email.count('@') == 1 and self.email.count('.') >= 1):
             raise EmailFormatOk('FORMAT_INVALIDE_EMAIL', 'Formato incorrecto. usa algo como ejemplo123@gmail.com', 400)
     
     
     def email_domain_ok(self):     #// VALIDATE DOMAIN CORRECTLY
-        if not self.email.endswith(('.com', '.net', '.gov', '.hotmail')):
+        if not self.email.endswith(('.com', '.net', '.gov', '.io')):
             raise EmailDomineOn('DOMAIN_NOT_OK', 'Dominio Ivalido', 400)
     
              #// SAVE
     def process_ok(self):
         return {'OK':{'DATA_LOG':{self.id_username:self.time},'USER_PROFILE_DATA':{
             self.id_username:{'name':self.username,'email':self.email,'role':'user'}},
-            'HASHED_PASSWORD':{self.id_username:self.unknwom}}}
+            'HASHED_PASSWORD':{self.id_username:self.hashed}}}
         
     
