@@ -88,7 +88,7 @@ class RegisterSesion:
              #// SAVE
     def process_ok(self):
         return {'OK':{'DATA_LOG':{self.id_username:self.time},'USER_PROFILE_DATA':{
-            self.id_username:{'name':self.username,'email':self.email,'role':None}},
-            'UNKOWM_DATA':{self.id_username:self.unknwom}}}
+            self.id_username:{'name':self.username,'email':self.email,'role':'user'}},
+            'HASHED_PASSWORD':{self.id_username:self.unknwom}}}
         
     

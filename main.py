@@ -1,11 +1,11 @@
 from datetime import datetime
 time = datetime.now().strftime("%d/%m/%Y %I:%M %p")
 
-from app.auth.login.repository.bd_register import LoginPortalProcess
+from app.auth.register.repository.bd_register import LoginPortalProcess
 from argon2 import PasswordHasher
-from app.auth.login.validator.register_sesion import RegisterSesion
-from app.auth.login.service.orquest import orquest_sesion_login # ejecuta validator
-from app.auth.login.service.redirection import datas_ok
+from app.auth.register.validator.register_sesion import RegisterSesion
+from app.auth.register.service.orquest import orquest_sesion_login # ejecuta validator
+from app.auth.register.service.redirection import datas_ok
 
 from app.logs.process_log_product import LogDataBase
 from app.products.repository.database import ProductDateBase
