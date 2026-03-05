@@ -38,13 +38,15 @@ def register_prtoducts():
     
 def post_registro_sesion():
     process_safe_private = PasswordHasher()
-    a = LoginPortalProcess()
-    x = RegisterSesion(a, process_safe_private, 'juan', '0324234242424', 'juanlopez@gmail.com') #se crea el objeto
+    
+    assignment_guide = LoginPortalProcess()
+    result_register = RegisterSesion(assignment_guide, process_safe_private, 'juan', '12345678900000', 'juanlopez@gmail.com') #se crea el objeto
     
     
      # lo pasamos para que se ejecute y nos devuleva un raise or dict
-    z = datas_ok(a, orquest_sesion_login, x)
-    a.x()
+    z = datas_ok(assignment_guide, orquest_sesion_login, result_register)
+    print(z)
+    assignment_guide.x()
     
     
     

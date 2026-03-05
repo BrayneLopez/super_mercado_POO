@@ -1,7 +1,7 @@
 from argon2 import PasswordHasher
 from datetime import datetime
 import uuid
-from app.auth.login.repository.raises_login import (FormatTextUsername, Usernamelength, PasswordLength, 
+from app.auth.register.repository.raises_login import (FormatTextUsername, Usernamelength, PasswordLength, 
 PasswordBannedOn, SafeFormatHashe, EmailFormatOk, EmailDomineOn, SpaceEmailOn)
 
 
@@ -85,9 +85,10 @@ class RegisterSesion:
         if not self.email.endswith(('.com', '.net', '.gov', '.hotmail')):
             raise EmailDomineOn('DOMAIN_NOT_OK', 'Dominio Ivalido', 400)
     
+             #// SAVE
     def process_ok(self):
-        return [self.obj.date_register_user_log({self.id_username:self.time}),
-            self.obj.sending_user_data({self.id_username:{'name':self.username,'email':self.email,'role':None,'datetimming':self.time}}),
-            self.obj.linked_data_redirection({self.id_username:self.unknwom})]
+        return {'OK':{'DATA_LOG':{self.id_username:self.time},'USER_PROFILE_DATA':{
+            self.id_username:{'name':self.username,'email':self.email,'role':None}},
+            'UNKOWM_DATA':{self.id_username:self.unknwom}}}
         
     

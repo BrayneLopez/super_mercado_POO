@@ -9,6 +9,5 @@ def orquest_sesion_login(x):
     x.safe_password_format()
     x.email_format_ok()
     x.email_domain_ok()
-    
     return x.process_ok()
    
