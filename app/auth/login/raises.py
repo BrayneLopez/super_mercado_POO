@@ -12,5 +12,5 @@ class LoginRais(Exception):
         super().__init__(types_errors_logins)
         
 
-class FormatNameError(LoginRais):
+class EmailNotFormat(LoginRais):
     pass

@@ -13,13 +13,13 @@ from app.products.validators.register_validation import ValidationProductRegistr
 from app.products.services.insert_history import ValidationProductsState
 from app.products.services.validation_service import OrquestValidationRaises, TypesOfErrors, AssigmentValidationCompletion
 from app.products.constants import NAME_IN_KEY, NAME_ON_KEY_ERROR
-
+from app.products.services.convert import converter_format
 
 def register_prtoducts():
     
     log = LogDataBase()
     db = ProductDateBase()
-    vlt = ValidationProductRegistration(db, 87654323, 'Gaseosa Manzana 2L', 1, '28/01/2026', 'Bebida')
+    vlt = ValidationProductRegistration(db, 87654323, 'Gaseosa Manzana 2L', 1, '28/01/2026', 'Bebida', converter_format)
     vps = ValidationProductsState(log, db, NAME_IN_KEY, NAME_ON_KEY_ERROR)
     orquest_exceptions = OrquestValidationRaises( vlt.numeric_entry, vlt.code_format, vlt.date_in_range, 
                                 vlt.cost_zero, db.product_active, db.factured_code, vlt.code)
@@ -50,10 +50,10 @@ def post_registro_sesion():
     
     
     
-if __name__ == "__man__":
+if __name__ == "__main__": #no interrumpe
     register_prtoducts()
 
-if __name__ == "__main__":
+if __name__ == "__man__":
     post_registro_sesion()
 
 
